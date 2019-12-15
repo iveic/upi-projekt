@@ -51,11 +51,11 @@ function Ispis()
 			document.getElementById("test").innerHTML="Nema karata."
 	}
 	else{
-		document.getElementById("test").innerHTML="Postojeće karte:\n"
+		document.getElementById("test").innerHTML="Postojeće karte:<br>"
 		for(var i=0; i < localStorage.length; i++)
 		{
 			var kljuc = localStorage.key(i);
-			document.getElementById("test").innerHTML += kljuc + " - " + localStorage.getItem(kljuc) + "\n";
+			document.getElementById("test").innerHTML += kljuc + " - " + localStorage.getItem(kljuc) + "<br>";
 		}
 	}
 }
