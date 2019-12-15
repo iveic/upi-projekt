@@ -22,11 +22,14 @@ function Potvrda()
 {
 	if (document.getElementById("ime").value.length == 0 || document.getElementById("prezime").value.length == 0 || document.getElementById("vrsta").value.length == 0)
 	{
-		alert("Nepotpun unos")
+		alert("Nepotpun unos.")
 	}
 	else
 	{
-		//unit podatke u bazu
+		var k = document.getElementById("ime").value + " " + document.getElementById("prezime").value;
+		var i = document.getElementById("vrsta").value;
+		localStorage.setItem(k, i); //localstorage pribacit u bazu
+		document.getElementById("test").innerHTML = "Unos uspješan."
 	}
 }
 
@@ -44,5 +47,15 @@ function Izbrisi()
 
 function Ispis()
 {
-	document.getElementById("test").innerHTML = '{{data["developer_organization"]}}'
+	if(localStorage.length==0){
+			document.getElementById("test").innerHTML="Nema karata."
+	}
+	else{
+		document.getElementById("test").innerHTML="Postojeće karte:\n"
+		for(var i=0; i < localStorage.length; i++)
+		{
+			var kljuc = localStorage.key(i);
+			document.getElementById("test").innerHTML += kljuc + " - " + localStorage.getItem(kljuc) + "\n";
+		}
+	}
 }
