@@ -3,10 +3,10 @@ from bottle import Bottle, run, \
 
 import os, sys
 
-from baza import unesi_demo_podatke, procitaj_sve_podatke, sacuvaj_novu_kartu, dohvati_kartu_po_id, azuriraj_kartu, izbrisi_kartu
+from baza import procitaj_sve_podatke, sacuvaj_novu_kartu, dohvati_kartu_po_id, azuriraj_kartu, izbrisi_kartu
 
 #poziv funkcije koja napuni bazu testnim podacima
-unesi_demo_podatke()
+#unesi_demo_podatke()
 
 #citanje svih podataka iz baze
 procitaj_sve_podatke()
