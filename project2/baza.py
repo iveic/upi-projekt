@@ -5,7 +5,7 @@ dirname = os.path.dirname(sys.argv[0])
 sys.path.append(dirname.replace('\\', '/') + '/entiteti/')
 
 from karte import Karte
-
+'''
 def unesi_demo_podatke():
     conn = sqlite3.connect("upi_projekt.db")
     try:
@@ -36,7 +36,7 @@ def unesi_demo_podatke():
         conn.rollback()
         
     conn.close()
-
+'''
 def procitaj_sve_podatke():
     conn = sqlite3.connect("upi_projekt.db")
     lista_karata = []
