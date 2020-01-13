@@ -1,4 +1,0 @@
-1;Ante;Antic;Solin;Godisnja;1
-2;Ivan;Marin;Split;Mjesecna;3
-3;Marin;Ivan;Omis;Mjesecna;4
-4;Pero;Perkovic;Sinj;Godisnja;1
