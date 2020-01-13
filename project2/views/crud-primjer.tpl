@@ -55,7 +55,7 @@
   <div class="container">
     <div class="row" style="padding: 25px 0;">
       <div class="col-md-2 text-center" style="padding: 0">
-        <a href='/crud-primjer-nova-karta' class="btn btn-dark">Dodaj novog profesora</a>
+        <a href='/crud-primjer-nova-karta' class="btn btn-dark">Dodaj novu kartu</a>
       </div>
     </div>
 	<div class="row">
