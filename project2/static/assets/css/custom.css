@@ -2,3 +2,18 @@
 	background-color:#ffefd5;
 	margin-bottom:15px;
 }
+
+body {
+	color: #102A83;
+	background-color: #FFEC00;
+  }
+
+.navbar-dark .navbar-brand {
+	background-color: #102A83;
+	color: #FFEC00;
+}
+
+.btn-dark {
+	background-color: #102A83;
+	color: #FFEC00;
+}
