@@ -66,6 +66,8 @@
                 <th scope="col">Godište</th>
                 <th scope="col">Datum izrade</th>
                 <th scope="col">Vrsta</th>
+                <th scope="col">Uredi</th>
+                <th scope="col">Izbriši</th>
                 </tr>
             </thead>
             <tbody>
