@@ -72,10 +72,15 @@
 				<input type="date" class="form-control" id="datumizrade" name="datumizrade" value='{{data.datum_izrade if data != None else ""}}' aria-describedby="datumizrade-help" placeholder="Unesite datum izrade" required>
 			</div>
 			
-			<div class="form-group">
-				<label for="vrsta">Vrsta</label>
-				<input type="text" class="form-control" id="vrsta" name="vrsta" value='{{data.vrsta if data != None else ""}}' aria-describedby="vrsta-help" placeholder="Unesite vrstu karte" required>
+			<div class="ui-field-contain">
+				<label for="vrsta">Vrsta</label><br>
+				<select name="vrsta" id="vrsta">
+					<option value="{{data.vrsta if data != None else 'dnevna'}}">Dnevna</option>
+					<option value="{{data.vrsta if data != None else 'mjesecna'}}">Mjesečna</option>
+					<option value="{{data.vrsta if data != None else 'godisnja'}}">Godišnja</option>
+				</select>
 			</div>
+			<br>
 
             <button type="submit" class="btn btn-primary">Sačuvaj</button>
 
