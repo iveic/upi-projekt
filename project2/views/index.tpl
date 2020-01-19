@@ -20,14 +20,14 @@
 	  <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-      <a class="navbar-brand" href="/">My UPI project</a>
+      <a class="navbar-brand" href="/">Autobusne karte</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="/">Home
+            <a class="nav-link" href="/">Početna
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -35,13 +35,13 @@
             <a class="nav-link" href="/crud-primjer">CRUD example</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="#">O nama</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" href="#">Usluge</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="#">Kontakt</a>
           </li>
         </ul>
       </div>
@@ -52,21 +52,21 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h1 class="mt-5">UPI project Starter Template</h1>
-        <p class="lead">Complete with pre-defined file paths, responsive navigation and example of how to pass data to HTML template!</p>
+        <h1 class="mt-5">UPI Projekt - Busevi</h1>
+        <p class="lead">Pokušaj izrade aplikacije za kupnju autobusnih karata preko interneta</p>
         <ul class="list-unstyled">
-          <li>Bootstrap</li>
-          <li>jQuery</li>
         </ul>
       </div>
     </div>
 	<div class="row">
-	<div class="col-lg-12 myCustomStyle"> This is div styled with custom style! </div>
+	<div class="col-lg-12 myCustomStyle"></div>
   </div>
 	<div class="row">
             <div class="jumbotron">
             <h2>Welcome from "{{data["developer_name"]}}"</h2>
-                <p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>
+                <p>Cilj projekta je napraviti potpuno funkcionalnu Python aplikaciju za evidenciju i prodaju autobusnih karata. Aplikacija preko izbornika nudi mogućnosti biranja opcija i omogućije korisniku da kreira, ažurira, briše i pregleda vrste autobusnih karata, te svih drugih entiteta potrebnih u aplikaciji. Implementirana je mogućnost evidencije i kupnje mjesečnih karata (pokaz). Omogućen je prikaz statistike prodaje za određeni vremenski interval, ispis računa i izvještaja u tekstualne datoteke. Korisnik sam bira mogućnosti sortiranja i filtere za prikaz. Aplikacija pamti podatke i podaci su dostupni i nakon isključivanja aplikacije. 
+Napraviti UML dijagrame za glavne procese u aplikaciji!
+                </p>
             </div>
         </div>
         <!--./row-->
