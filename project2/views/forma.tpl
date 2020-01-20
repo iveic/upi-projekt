@@ -20,30 +20,29 @@
 
 	
 	  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <nav class="navbar navbar-expand-lg navbar-custom static-top">
     <div class="container">
-      <a class="navbar-brand" href="/">My UPI project</a>
+      <a class="navbar-brand" style="color:#FFEC00" href="/">My UPI project</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" style="color:#FFEC00" href="/">Početna</a>
           </li>
-	  <li class="nav-item active">
-            <a class="nav-link" href="/crud-primjer">CRUD example
-	    <span class="sr-only">(current)</span>
-	    </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+		  <li class="nav-item active">
+            <a class="nav-link" style="color:#FFEC00" href="/crud-primjer">CRUD example
+			<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" style="color:#FFEC00" href="/info">O nama</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" style="color:#FFEC00" href="#">Usluge</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="color:#FFEC00" href="#">Kontakt</a>
           </li>
         </ul>
       </div>
@@ -81,7 +80,7 @@
 				</select>
 			</div>
 			<br>
-
+			
             <button type="submit" class="btn btn-primary">Sačuvaj</button>
 
         </form>     
