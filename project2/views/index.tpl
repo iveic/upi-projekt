@@ -7,7 +7,7 @@
     <meta name="description" content="Bottle web project template">
     <meta name="author" content="datamate">
      
-    <title>My UPI Project</title>
+    <title>UPI - Busevi</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/custom.css">
     <script type="text/javascript" src="/static/jquery.js"></script>
@@ -18,30 +18,30 @@
 
 	
 	  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <nav class="navbar navbar-expand-lg navbar-custom static-top">
     <div class="container">
-      <a class="navbar-brand" href="/">Autobusne karte</a>
+      <a class="navbar-brand" style="color:#FFEC00" href="/">Autobusne karte</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="/">Početna
+            <a class="nav-link" style="color:#FFFFFF" href="/">Početna
               <span class="sr-only">(current)</span>
             </a>
           </li>
 		  <li class="nav-item">
-            <a class="nav-link" href="/crud-primjer">CRUD example</a>
+            <a class="nav-link" style="color:#FFEC00" href="/crud-primjer">CRUD example</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">O nama</a>
+            <a class="nav-link" style="color:#FFEC00" href="/info">O nama</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Usluge</a>
+            <a class="nav-link" style="color:#FFEC00" href="#">Usluge</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Kontakt</a>
+            <a class="nav-link" style="color:#FFEC00" href="#">Kontakt</a>
           </li>
         </ul>
       </div>
