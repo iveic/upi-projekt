@@ -21,8 +21,8 @@
   <nav class="navbar navbar-expand-lg navbar-custom static-top">
     <div class="container">
       <a class="navbar-brand" style="color:#FFEC00" href="/">Autobusne karte</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon custom-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
@@ -32,7 +32,10 @@
             </a>
           </li>
 		  <li class="nav-item">
-            <a class="nav-link" style="color:#FFEC00" href="/crud-primjer">CRUD example</a>
+          <li class="nav-item">
+            <a class="nav-link" style="color:#FFEC00" href="/prijava">Prijava</a>
+          </li>
+            <a class="nav-link" style="color:#FFEC00" href="/crud-primjer">Karte</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" style="color:#FFEC00" href="/info">O nama</a>
@@ -58,16 +61,13 @@
         </ul>
       </div>
     </div>
-	<div class="row">
-	<div class="col-lg-12 myCustomStyle"></div>
-  </div>
-	<div class="row">
-            <div class="jumbotron">
+	  <div class="row">
+          <div class="jumbotron">
             <h2>Welcome from "{{data["developer_name"]}}"</h2>
-                <p>Cilj projekta je napraviti potpuno funkcionalnu Python aplikaciju za evidenciju i prodaju autobusnih karata. Aplikacija preko izbornika nudi mogućnosti biranja opcija i omogućije korisniku da kreira, ažurira, briše i pregleda vrste autobusnih karata, te svih drugih entiteta potrebnih u aplikaciji. Implementirana je mogućnost evidencije i kupnje mjesečnih karata (pokaz). Omogućen je prikaz statistike prodaje za određeni vremenski interval, ispis računa i izvještaja u tekstualne datoteke. Korisnik sam bira mogućnosti sortiranja i filtere za prikaz. Aplikacija pamti podatke i podaci su dostupni i nakon isključivanja aplikacije. 
-Napraviti UML dijagrame za glavne procese u aplikaciji!
-                </p>
-            </div>
+            <p>Cilj projekta je napraviti potpuno funkcionalnu Python aplikaciju za evidenciju i prodaju autobusnih karata. Aplikacija preko izbornika nudi mogućnosti biranja opcija i omogućije korisniku da kreira, ažurira, briše i pregleda vrste autobusnih karata, te svih drugih entiteta potrebnih u aplikaciji. Implementirana je mogućnost evidencije i kupnje mjesečnih karata (pokaz). Omogućen je prikaz statistike prodaje za određeni vremenski interval, ispis računa i izvještaja u tekstualne datoteke. Korisnik sam bira mogućnosti sortiranja i filtere za prikaz. Aplikacija pamti podatke i podaci su dostupni i nakon isključivanja aplikacije. 
+              Napraviti UML dijagrame za glavne procese u aplikaciji!
+            </p>
+          </div>
         </div>
         <!--./row-->
         <div class="row">
