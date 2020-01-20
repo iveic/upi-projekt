@@ -23,17 +23,20 @@
 	  <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-custom static-top">
     <div class="container">
-      <a class="navbar-brand" style="color:#FFEC00" href="/">Pregled</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <a class="navbar-brand" style="color:#FFEC00" href="/">Autobusne karte</a>
+      <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon custom-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" style="color:#FFEC00" href="/">Početna</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" style="color:#FFEC00" href="/prijava">Prijava</a>
+          </li>
 		  <li class="nav-item active">
-            <a class="nav-link" style="color:#FFFFFF" href="/crud-primjer">CRUD example</a>
+            <a class="nav-link" style="color:#FFFFFF" href="/crud-primjer">Karte</a>
 			<span class="sr-only">(current)</span>
           </li>
           <li class="nav-item">
@@ -70,7 +73,7 @@
                 <th scope="col">Izbriši</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="background-color:#e9ecef">
 
                 %for item in data:
 
