@@ -55,19 +55,16 @@
 
   <!-- Page Content -->
   <div class="container">
-    <div class="row">
-        <div class="form-group">
-                <label for="username">Korisničko ime</label>
-                <input type="text" class="form-control" id="username" name='username' value='{{data.ime_prezime if data != None else ""}}' aria-describedby="imeprezime-help" placeholder="Unesite korisničko ime" required>
-            </div>
-
-            <div class="form-group">
-                <label for="godiste">Zaporka</label>
-                <input type="text" class="form-control" id="password" name='password' value='{{data.godiste if data != None else ""}}' aria-describedby="godiste-help" placeholder="Unesite zaporku" required>
-            </div>
-            <br>
-            <button type="submit" class="btn btn-dark">Prijava</button>
-    <!--./row-->
+      <div class="form-group">
+        <label for="username">Korisničko ime</label>
+        <input type="text" class="form-control" id="username" name='username' value='{{data.ime_prezime if data != None else ""}}' aria-describedby="imeprezime-help" placeholder="Unesite korisničko ime" required>
+      </div>
+      <div class="form-group">
+        <label for="godiste">Zaporka</label>
+        <input type="text" class="form-control" id="password" name='password' value='{{data.godiste if data != None else ""}}' aria-describedby="godiste-help" placeholder="Unesite zaporku" required>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-dark">Prijava</button>
   </div>
 </body>
 </html>
