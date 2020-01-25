@@ -14,8 +14,9 @@ from zona import Broj_zone
 def unesi_demo_podatke():
     conn = sqlite3.connect("upi_projekt.db")
     
-    try: #karta
+    try:
 
+        #karta
         cur = conn.cursor()
         cur.executescript("""
 
@@ -35,13 +36,7 @@ def unesi_demo_podatke():
 
         print("uspjesno uneseni testni podaci u tablicu karte!")
 
-    except Exception as e: 
-        print("Dogodila se greska pri kreiranju demo podataka: ", e)
-        conn.rollback()
-
-    try: #putnik
-
-        cur = conn.cursor()
+        #putnik
         cur.executescript("""
 
         DROP TABLE IF EXISTS putnik;
@@ -62,14 +57,8 @@ def unesi_demo_podatke():
         conn.commit()
 
         print("uspjesno uneseni testni podaci u tablicu putnik!")
-        
-    except Exception as e:
-        print("dogodila se greska pri kreiranju demo podataka: ", e)
-        conn.rollback()
-
-    try: #zona
-
-        cur = conn.cursor()
+    
+        #zona
         cur.executescript("""
 
         DROP TABLE IF EXISTS zona;
@@ -81,18 +70,12 @@ def unesi_demo_podatke():
 
         print("uspjesno kreirana tablica zona!")
 
-        cur.execute("INSERT INTO zona (broj_zone) VALUES (?)", (2,))
         cur.execute("INSERT INTO zona (broj_zone) VALUES (?)", (1,))
+        cur.execute("INSERT INTO zona (broj_zone) VALUES (?)", (2,))
 
         print("uspjesno uneseni testni podaci u tablicu zona!")
-        
-    except Exception as e: 
-        print("Dogodila se greska pri kreiranju demo podataka: ", e)
-        conn.rollback()
 
-    try: #podrucje
-        
-        cur = conn.cursor()
+        #podrucje
         cur.executescript("""
 
         DROP TABLE IF EXISTS podrucje;
@@ -113,6 +96,9 @@ def unesi_demo_podatke():
 
         print("uspjesno uneseni testni podaci u tablicu podrucje!")
 
+        ###
+        cur.executescript("""DROP TABLE IF EXISTS test;""")
+        
     except Exception as e:
         print("Dogodila se greska pri kreiranju demo podataka: ", e)
         conn.rollback()
@@ -126,27 +112,28 @@ def procitaj_sve_podatke():
     try:
 
         cur = conn.cursor()
-        '''
         cur.execute("""SELECT * FROM putnik INNER JOIN karta
-                    ON putnik.karta_id = karta.id JOIN podrucje
-                    ON podrucje.karta_id = karta.id JOIN zona
-                    ON podrucje.zona_id = zona.id""")''' #problem povezivanja sa podrucjem i zonom
-        
-        cur.execute("""SELECT * FROM putnik INNER JOIN karta
-                    ON putnik.karta_id = karta.id""")
+                    ON putnik.karta_id = karta.id INNER JOIN podrucje
+                    ON podrucje.karta_id = karta.id INNER JOIN zona
+                    ON podrucje.zona_id = zona.id""")
 
         podaci = cur.fetchall()
-        for karta in podaci:
-            print(karta)
-            p = Putnik(karta[0], karta[1], karta[2], karta[3])
-            lista_podataka.append(p)
-            k = Karta(karta[5], karta[6], karta[7])
-            lista_podataka.append(k)
-
-        print("!")
-
-        for p in lista_podataka:
-            print(p)
+        for podatak in podaci:
+            print(podatak)
+            lista = []
+            lista.append(Putnik(podatak[0], podatak[1], podatak[2], podatak[3])) #zanemaren 1 strani kljuc, 4
+            lista.append(Karta(podatak[5], podatak[6], podatak[7]))
+            lista.append(Podrucje(podatak[8], podatak[9])) #zanemarena 2 strana kljuca, 10 11
+            lista.append(Broj_zone(podatak[12], podatak[13]))
+            lista_podataka.append(lista)
+            #lista_podataka.append(Putnik(podatak[0], podatak[1], podatak[2], podatak[3])) #zanemaren 1 strani kljuc, 4
+            #lista_podataka.append(Karta(podatak[5], podatak[6], podatak[7]))
+            #lista_podataka.append(Podrucje(podatak[8], podatak[9])) #zanemarena 2 strana kljuca, 10 11
+            #lista_podataka.append(Broj_zone(podatak[12], podatak[13]))
+        
+        
+        #for p in lista_podataka:
+         #   print(p)
 
     except Exception as e: 
         print("Dogodila se greska pri dohvacanju svih podataka iz tablice karte: ", e)
@@ -155,72 +142,35 @@ def procitaj_sve_podatke():
     conn.close()
     return lista_podataka
 
-def sacuvaj_novu_kartu(datumizrade, vrsta, imeprezime, godiste, mjestostanovanja, kartaid):
+def sacuvaj_novu_kartu(datumizrade, vrstakarta, imeprezime, godiste, mjestostanovanja, kartaidputnik, brojzone, vrstapodrucje, kartaidpodrucje, zonaid):
 
     conn = sqlite3.connect("upi_projekt.db")
     try:
         cur = conn.cursor()
-
-        cur.execute("INSERT INTO karta (datum_izrade, vrsta) VALUES (?, ?)", (datumizrade, vrsta))
+        
+        #karta
+        cur.execute("INSERT INTO karta (datum_izrade, vrsta) VALUES (?, ?)", (datumizrade, vrstakarta))
         conn.commit()
 
         print("uspjesno dodana nova karta")
         
-        cur.execute("INSERT INTO putnik (ime_prezime, godiste, mjesto_stanovanja, karta_id) VALUES (?, ?, ?, ?)", (imeprezime, godiste, mjestostanovanja, kartaid))
+        #putnik
+        cur.execute("INSERT INTO putnik (ime_prezime, godiste, mjesto_stanovanja, karta_id) VALUES (?, ?, ?, ?)", (imeprezime, godiste, mjestostanovanja, kartaidputnik))
         conn.commit()
 
-        print("uspjesno dodan noi putnik")
-
-    except Exception as e: 
-        print("Dogodila se greska pri dodavanju nove karte u bazu podataka: ", e)
-        conn.rollback()
-
-    conn.close()
-
-'''
-def procitaj_sve_podatke():
-    conn = sqlite3.connect("upi_projekt.db")
-    lista_karata = []
-     
-    try:
-
-        cur = conn.cursor()
-        cur.execute(""" SELECT id, ime_prezime, godiste, datum_izrade, vrsta FROM karte """)
-
-        podaci = cur.fetchall()
+        print("uspjesno dodan novi putnik")
         
-        for karta in podaci:
-            # 0 - id
-            # 1 - ime_prezime
-            # 2 - godiste
-            # 3 - datum_izrade
-            # 4 - vrsta
-
-            k = Karte(karta[0], karta[1], karta[2], karta[3], karta[4])
-            lista_karata.append(k)
-
-        print("uspjesno dohvaceni svi podaci iz tablice karte!")
-
-        for k in lista_karata:
-            print(k)
-
-    except Exception as e: 
-        print("Dogodila se greska pri dohvacanju svih podataka iz tablice karte: ", e)
-        conn.rollback()
-
-    conn.close()
-    return lista_karata
-
-
-def sacuvaj_novu_kartu(imeprezime, godiste, datumizrade, vrsta):
-    conn = sqlite3.connect("upi_projekt.db")
-    try:
-
-        cur = conn.cursor()
-        cur.execute("INSERT INTO karte (ime_prezime, godiste, datum_izrade, vrsta) VALUES (?, ?, ?, ?)", (imeprezime, godiste, datumizrade, vrsta))
+        #zona
+        cur.execute("INSERT INTO zona (broj_zone) VALUES (?)", (brojzone))
         conn.commit()
 
-        print("uspjesno dodana nova karta u bazu podataka")
+        print("uspjesno dodana nova zona")
+        
+        #podrucje
+        cur.execute("INSERT INTO podrucje (vrsta, karta_id, zona_id) VALUES (?, ?, ?)", (vrstapodrucje, kartaidpodrucje, zonaid))
+        conn.commit()
+
+        print("uspjesno dodana nova zona")
 
     except Exception as e: 
         print("Dogodila se greska pri dodavanju nove karte u bazu podataka: ", e)
@@ -233,10 +183,13 @@ def izbrisi_kartu(karta_id):
     try:
 
         cur = conn.cursor()
-        cur.execute("DELETE FROM karte WHERE id=?;", (karta_id))
-        conn.commit()
+        cur.execute("""DELETE FROM putnik INNER JOIN karta
+                    ON putnik.karta_id = karta.id INNER JOIN podrucje
+                    ON podrucje.zona_id = zona.id
+                    WHERE karta.id=?;""", (karta_id))
+        conn.comit()
 
-        print("uspjesno izbrisana karta iz baze podataka")
+        print("Uspjesno izbrisana karta iz baze podataka")
 
     except Exception as e: 
         print("Dogodila se greska pri brisanju karte iz baze podataka: ", e)
@@ -244,6 +197,32 @@ def izbrisi_kartu(karta_id):
 
     conn.close()
 
+def azuriraj_kartu(karta_id, imeprezime, godiste, mjestostanovanja, kartaidputnik, datumizrade, vrstakarta, vrstapodrucje, kartaidpodrucje, zonaid, brojzone):
+    conn = sqlite3.connect("upi_projekt.db")
+    try:
+
+        cur = con.cursor()
+        cur.execute("UPDATE putnik SET ime_prezime = ?, godiste = ?, mjesto_stanovanja = ?, karta_id WHERE karta_id = ?", (imeprzime, godiste, mjestostanovanja, kartaidputnik, karta_id))
+        cur.commit()
+
+        cur.execute("UPDATE karta SET datum_izrade = ?, vrsta = ? WHERE id = ?", (datumizrade, vrstakarta, karta_id))
+        cur.commit()
+
+        cur.execute("UPDATE podrucje SET vrsta = ?, karta_id = ?, zona_id = ? WHERE karta_id = ?", (vrstapodrucje, kartaidpodrucje, zonaid, karta_id))
+        cur.commit()
+
+        cur.execute("UPDATE zona SET broj_zone = ? WHERE (SELECT karta_id FROM podrucje) karta_id = ?)", (brojzone, karta_id)) #vrlo vjerovatno krivo
+        cur.commit()
+        
+        print("uspjesno azurirani podatci")
+
+    except Exception as e: 
+        print("Dogodila se greska pri ažuriranju karte iz baze podataka: ", e)
+        conn.rollback()
+        
+    conn.close()
+
+'''
 def dohvati_kartu_po_id(karta_id):
     conn = sqlite3.connect("upi_projekt.db")
     karta = None
@@ -264,20 +243,4 @@ def dohvati_kartu_po_id(karta_id):
 
     conn.close()
     return karta
-
-def azuriraj_kartu(karta_id, imeprezime, godiste, datumizrade, vrsta):
-    conn = sqlite3.connect("upi_projekt.db")
-    try:
-
-        cur = conn.cursor()
-        cur.execute("UPDATE karte SET ime_prezime = ?, godiste = ?, datum_izrade = ?, vrsta = ? WHERE id = ?", (imeprezime, godiste, datumizrade, vrsta, karta_id))
-        conn.commit()
-
-        print("uspjesno ažurirana karta iz baze podataka")
-
-    except Exception as e: 
-        print("Dogodila se greska pri ažuriranju karte iz baze podataka: ", e)
-        conn.rollback()
-
-    conn.close()
 '''
