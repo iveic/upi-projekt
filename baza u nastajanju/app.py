@@ -4,9 +4,9 @@ from bottle import Bottle, run, \
 import os, sys
 
 #from baza import procitaj_sve_podatke, sacuvaj_novu_kartu, dohvati_kartu_po_id, azuriraj_kartu, izbrisi_kartu
-from baza import unesi_demo_podatke, procitaj_sve_podatke, sacuvaj_novu_kartu
+from baza import unesi_demo_podatke, procitaj_sve_podatke, sacuvaj_novu_kartu, izbrisi_kartu, azuriraj_kartu
 #poziv funkcije koja napuni bazu testnim podacima
-unesi_demo_podatke()
+#unesi_demo_podatke()
 
 #citanje svih podataka iz baze
 procitaj_sve_podatke()
@@ -35,15 +35,30 @@ def send_jsmap(filename):
 
 @app.route('/crud-primjer')
 def crud_primjer():
-    podaci = procitaj_sve_podatke()
+    procitaj_sve = procitaj_sve_podatke()
+    podaci = []
+    #print(procitj_sve)
+    for p in procitaj_sve:
+        lista = []
+        lista.append(p[0].id)
+        lista.append(p[0].ime_prezime)
+        lista.append(p[0].godiste)
+        lista.append(p[0].mjesto_stanovanja)
+        lista.append(p[1].datum_izrade)
+        lista.append(p[1].vrsta)
+        lista.append(p[2].vrsta)
+        lista.append(p[3].broj_zone)
+        podaci.append(lista)
+        #print("!")
+    #print(podaci)
     return template('crud-primjer', data = podaci, template_lookup=[template_path])
-'''
+
 @app.route('/crud-primjer-nova-karta')
 def crud_primjer_nova_karta():
-    #vrati template s formom za unos novog profesora
+    #vrati template s formom za unos nove karte
     return template('forma', data=None, form_akcija="/crud-primjer-nova-karta-save", template_lookup=[template_path])
-'''
-'''
+
+
 @app.route('/crud-primjer-nova-karta-save', method='POST')
 def crud_primjer_nova_karta_save():
     postdata = request.body.read()
@@ -51,16 +66,21 @@ def crud_primjer_nova_karta_save():
     #dohvaćamo podatke po atributu "name" definiranog u input elementu forme
     ime_prezime = request.forms.get("imeprezime")
     godiste = int(request.forms.get("godiste"))
+    mjesto_stanovanja = request.forms.get("mjestostnovanja")
     datum_izrade = request.forms.get("datumizrade")
-    vrsta = request.forms.get("vrsta")
-    
+    vrsta_karte = request.forms.get("vrsta")
+    vrsta_podrucja = request.forms.get("podrucje")
+    zona = int(request.forms.get("zona"))
+    karta_id_putnik = 0 #int(request.forms.get("kartaid"))
+    karta_id_podrucje = 0 #int(request.forms.get("kartaid"))
+    zona_id = 0
 
     #sacuvaj kartu u bazu
-    sacuvaj_novu_kartu(ime_prezime, godiste, datum_izrade, vrsta)
+    sacuvaj_novu_kartu(datum_izrade, vrsta_karte, ime_prezime, godiste, mjesto_stanovanja, karta_id_putnik, zona, vrsta_podrucja, karta_id_podrucje, zona_id)
 
     #redirektaj korisnika na pocetnu stranicu
     redirect('/crud-primjer')
-'''
+
 '''
 @app.route('/crud-primjer-azuriraj-kartu')
 def crud_primjer_azuriraj_kartu():
