@@ -45,7 +45,7 @@ def unesi_demo_podatke():
         id INTEGER PRIMARY KEY,
         ime_prezime TEXT NOT NULL,
         godiste INTEGER NOT NULL,
-        mjesto_stanovanja TEXT NOT NULL,
+        mjesto_stanovanja TEXT,
         karta_id INTEGER NOT NULL,
         FOREIGN KEY (karta_id) REFERENCES karta (id));
         """)
@@ -126,10 +126,6 @@ def procitaj_sve_podatke():
             lista.append(Podrucje(podatak[8], podatak[9])) #zanemarena 2 strana kljuca, 10 11
             lista.append(Broj_zone(podatak[12], podatak[13]))
             lista_podataka.append(lista)
-            #lista_podataka.append(Putnik(podatak[0], podatak[1], podatak[2], podatak[3])) #zanemaren 1 strani kljuc, 4
-            #lista_podataka.append(Karta(podatak[5], podatak[6], podatak[7]))
-            #lista_podataka.append(Podrucje(podatak[8], podatak[9])) #zanemarena 2 strana kljuca, 10 11
-            #lista_podataka.append(Broj_zone(podatak[12], podatak[13]))
         
         
         #for p in lista_podataka:
@@ -142,8 +138,15 @@ def procitaj_sve_podatke():
     conn.close()
     return lista_podataka
 
-def sacuvaj_novu_kartu(datumizrade, vrstakarta, imeprezime, godiste, mjestostanovanja, kartaidputnik, brojzone, vrstapodrucje, kartaidpodrucje, zonaid):
+def sacuvaj_novu_kartu(datumizrade, vrstakarta, imeprezime, godiste, mjestostanovanja, brojzone, vrstapodrucje):
 
+    lista = procitaj_sve_podatke()
+    print("Lista")
+    print(lista)
+    l = len(lista)
+    kartaidputnik = l + 1
+    kartaidpodrucje = l + 1
+    
     conn = sqlite3.connect("upi_projekt.db")
     try:
         cur = conn.cursor()
@@ -161,16 +164,29 @@ def sacuvaj_novu_kartu(datumizrade, vrstakarta, imeprezime, godiste, mjestostano
         print("uspjesno dodan novi putnik")
         
         #zona
-        cur.execute("INSERT INTO zona (broj_zone) VALUES (?)", (brojzone))
+        cur.execute("INSERT INTO zona (broj_zone) VALUES (?)", (brojzone,))
         conn.commit()
 
         print("uspjesno dodana nova zona")
         
         #podrucje
+        lista = procitaj_sve_podatke()
+        #print("lista 2")
+        #print(lista[0][3].id) #zona id
+        zonaid = -1
+        x = -1
+        for i in range(l):
+            if lista[i][3].broj_zone == brojzone:
+                x = i
+        if x >= 0:
+            zonaid = lista[x][3].id
+        else:
+            zonaid = l + 1
+        
         cur.execute("INSERT INTO podrucje (vrsta, karta_id, zona_id) VALUES (?, ?, ?)", (vrstapodrucje, kartaidpodrucje, zonaid))
         conn.commit()
 
-        print("uspjesno dodana nova zona")
+        print("uspjesno dodano novo podrucje")
 
     except Exception as e: 
         print("Dogodila se greska pri dodavanju nove karte u bazu podataka: ", e)
@@ -183,12 +199,24 @@ def izbrisi_kartu(karta_id):
     try:
 
         cur = conn.cursor()
-        cur.execute("""DELETE FROM putnik INNER JOIN karta
-                    ON putnik.karta_id = karta.id INNER JOIN podrucje
-                    ON podrucje.zona_id = zona.id
-                    WHERE karta.id=?;""", (karta_id))
+        '''
+        cur.execute("""DELETE FROM putnik WHERE karta_id in
+                    (SELECT karta.id FROM karta INNER JOIN podrucje
+                    ON podrucje.karta_id = karta.id INNER JOIN zona
+                    ON podrucje.zona_id = zona.id where karta.id = ?)""", karta_id)
+        conn.comit()'''
+        '''
+        cur.execute("DELETE FROM zona WHERE (SELECT karta_id FROM podrucje WHERE karta_id = ?)", karta_id)
         conn.comit()
-
+        cur.execute("DELETE FROM podrucje WHERE karta_id = ?)", karta_id)
+        conn.comit()
+        cur.execute("DELETE FROM putnik WHERE karta_id = ?)", karta_id)
+        conn.comit()
+        cur.execute("DELETE FROM karta WHERE id = ?)", karta_id)
+        conn.comit()
+        '''
+        cur.execute("DELETE FROM karta WHERE id = ?", karta_id)
+        conn.comit()
         print("Uspjesno izbrisana karta iz baze podataka")
 
     except Exception as e: 
