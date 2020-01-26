@@ -6,7 +6,7 @@ import os, sys
 #from baza import procitaj_sve_podatke, sacuvaj_novu_kartu, dohvati_kartu_po_id, azuriraj_kartu, izbrisi_kartu
 from baza import unesi_demo_podatke, procitaj_sve_podatke, sacuvaj_novu_kartu, izbrisi_kartu, azuriraj_kartu
 #poziv funkcije koja napuni bazu testnim podacima
-#unesi_demo_podatke()
+unesi_demo_podatke()
 
 #citanje svih podataka iz baze
 procitaj_sve_podatke()
@@ -66,17 +66,14 @@ def crud_primjer_nova_karta_save():
     #dohvaćamo podatke po atributu "name" definiranog u input elementu forme
     ime_prezime = request.forms.get("imeprezime")
     godiste = int(request.forms.get("godiste"))
-    mjesto_stanovanja = request.forms.get("mjestostnovanja")
+    mjesto_stanovanja = request.forms.get("mjestostanovanja")
     datum_izrade = request.forms.get("datumizrade")
     vrsta_karte = request.forms.get("vrsta")
     vrsta_podrucja = request.forms.get("podrucje")
     zona = int(request.forms.get("zona"))
-    karta_id_putnik = 0 #int(request.forms.get("kartaid"))
-    karta_id_podrucje = 0 #int(request.forms.get("kartaid"))
-    zona_id = 0
 
     #sacuvaj kartu u bazu
-    sacuvaj_novu_kartu(datum_izrade, vrsta_karte, ime_prezime, godiste, mjesto_stanovanja, karta_id_putnik, zona, vrsta_podrucja, karta_id_podrucje, zona_id)
+    sacuvaj_novu_kartu(datum_izrade, vrsta_karte, ime_prezime, godiste, mjesto_stanovanja, zona, vrsta_podrucja)
 
     #redirektaj korisnika na pocetnu stranicu
     redirect('/crud-primjer')
@@ -110,7 +107,7 @@ def crud_primjer_azuriraj_kartu_save():
     #redirektaj korisnika na pocetnu stranicu
     redirect('/crud-primjer')
 '''
-'''
+
 @app.route('/crud-primjer-izbrisi-kartu')
 def crud_primjer_izbrisi_kartu():
 
@@ -122,7 +119,7 @@ def crud_primjer_izbrisi_kartu():
 
     #redirektaj korisnika na pocetnu stranicu
     redirect('/crud-primjer')
-'''
+
 @app.route('/')
 def index():
     data = {"developer_name": "PMF student",
