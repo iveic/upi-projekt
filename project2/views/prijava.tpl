@@ -44,24 +44,18 @@
   </nav>
 
   <!-- Page Content -->
-<div class="container">
+      <div class="container">
 	<form style="width: 100%" action='{{form_akcija}}' method="POST">
-		<h1>Prijava</h1>
-		<hr>
-		<label for="login_username"><b>Korisničko ime</b></label>
-		<input type="text" placeholder="Korisničko ime" name="login_username" required>
-		<br>
-		<label for="login_password"><b>Zaporka</b></label>
-		<input type="password" placeholder="Zaporka" name="login_pasword" required>
-        <br>
-		<button type="submit">Prijava</button>
-     </form>
-</div>
-		  
-		</div>
-	</div>
-	</div>
-      
-  </div>
-</body>
+	 <h1>Prijava</h1>
+	 <hr>
+	 <label for="login_username"><b>Korisničko ime</b></label>
+	 <input type="text" placeholder="Korisničko ime" name="login_username" required>
+	 <br>
+	 <label for="login_password"><b>Zaporka</b></label>
+	 <input type="password" placeholder="Zaporka" name="login_pasword" required>
+         <br>
+	<button type="submit">Prijava</button>
+      </form>
+    </div>
+  </body>
 </html>
