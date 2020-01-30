@@ -5,6 +5,8 @@ import os, sys
 
 from baza import *
 
+login = False
+
 #poziv funkcije koja napuni bazu testnim podacima
 #unesi_demo_podatke()
 
@@ -54,8 +56,11 @@ def ispis_karata():
 
 @app.route('/crud-primjer')
 def crud_primjer():
-    podaci = procitaj_sve_podatke()
-    return template('crud-primjer', data = podaci, template_lookup=[template_path])
+    if login == True:
+        podaci = procitaj_sve_podatke()
+        return template('crud-primjer', data = podaci, template_lookup=[template_path])
+    else:
+        return template('prijava', data = None, form_akcija="provjera", template_lookup=[template_path])
 
 @app.route('/crud-primjer-nova-karta')
 def crud_primjer_nova_karta():
@@ -119,13 +124,15 @@ def crud_primjer_izbrisi_kartu():
 
 @app.route('/provjera', method=['GET', 'POST'])
 def provjera():
+    global login
     postdata = request.body.read()
     user = request.forms.get("login_username")
     lozinka = str(request.forms.get("login_password"))
     svi_korisnici = procitaj_podatke_korisnik()
     for korisnik in svi_korisnici:
-        if (korisnik._username == user):
-            if (korisnik._password == lozinka):
+        if (korisnik.username == user):
+            if (korisnik.password == lozinka):
+                login = True
                 redirect('crud-primjer')
             else:
                 redirect('prijava')
