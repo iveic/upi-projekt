@@ -40,6 +40,9 @@
           <li class="nav-item">
             <a class="nav-link" style="color:#FFEC00" href="/prijava">Prijava</a>
 		  </li>
+	  <li class="nav-item">
+            <a class="nav-link" style="color:#FFEC00" href="/odjava">Odjava</a>
+		  </li>
         </ul>
       </div>
     </div>
