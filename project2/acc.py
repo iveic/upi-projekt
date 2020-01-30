@@ -4,7 +4,7 @@ import os, sys
 dirname = os.path.dirname(sys.argv[0])
 sys.path.append(dirname.replace('\\', '/') + '/entiteti/')
 
-from user import User
+from korisnik import Korisnik
 
 def unesi_demo_korisnika():
 
@@ -73,7 +73,7 @@ def stvaranje_novog_korisnika(username, password):
                 postoji = True
 
         if postoji == False:
-            cur.executescript("INSERT INTO putnik (username, password) VALUES (?, ?)", (username, password))
+            cur.executescript("INSERT INTO korisnik (username, password) VALUES (?, ?)", (username, password))
 
     except Exception as e: 
         print("Dogodila se greska pri provjeri podataka: ", e)
