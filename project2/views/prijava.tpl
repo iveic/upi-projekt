@@ -36,7 +36,7 @@
             <a class="nav-link" style="color:#FFEC00" href="/info">Kontakt</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" style="color:#FFEC00">Prijava<span class="sr-only">(current)</span></a>
+            <a class="nav-link" style="color:#FFFFFF">Prijava<span class="sr-only">(current)</span></a>
           </li>
         </ul>
       </div>
@@ -54,10 +54,11 @@
 	 </div>
 	 <div class="form-group">
 	 <label for="login_password"><b>Zaporka</b></label>
-	 <input type="password" placeholder="Zaporka" name="login_pasword" required>
+	 <input type="password" placeholder="Zaporka" name="login_password" required>
      	 </div>
 	<button type="submit" class="btn btn-dark">Prijava</button>
       </form>
+      <span 
     </div>
   </body>
 </html>
