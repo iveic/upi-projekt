@@ -48,12 +48,14 @@
 	<form style="width: 100%" action='{{form_akcija}}' method="POST">
 	 <h1>Prijava</h1>
 	 <hr>
+	 <div class="form-group">
 	 <label for="login_username"><b>Korisničko ime</b></label>
 	 <input type="text" placeholder="Korisničko ime" name="login_username" required>
-	 <br>
+	 </div>
+	 <div class="form-group">
 	 <label for="login_password"><b>Zaporka</b></label>
 	 <input type="password" placeholder="Zaporka" name="login_pasword" required>
-         <br>
+     	 </div>
 	<button type="submit" class="btn btn-dark">Prijava</button>
       </form>
     </div>
