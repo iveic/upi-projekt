@@ -38,6 +38,9 @@
           <li class="nav-item">
             <a class="nav-link" style="color:#FFFFFF">Prijava<span class="sr-only">(current)</span></a>
           </li>
+	  <li class="nav-item">
+            <a class="nav-link" style="color:#FFEC00" href="/odjava">Odjava</a>
+		  </li>
         </ul>
       </div>
     </div>
