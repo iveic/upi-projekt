@@ -3,7 +3,7 @@ from bottle import Bottle, run, \
 
 import os, sys
 
-from baza import unesi_demo_podatke, procitaj_sve_podatke, izbrisi_kartu, sacuvaj_novu_kartu, dohvati_kartu_po_id, azuriraj_kartu
+from baza import *
 
 #poziv funkcije koja napuni bazu testnim podacima
 #unesi_demo_podatke()
@@ -116,6 +116,25 @@ def crud_primjer_izbrisi_kartu():
 
     #redirektaj korisnika na pocetnu stranicu
     redirect('/crud-primjer')
+
+@app.route('/provjera', method=['GET', 'POST'])
+def provjera():
+    postdata = request.body.read()
+    user = request.forms.get("login_username")
+    lozinka = str(request.forms.get("login_password"))
+    svi_korisnici = procitaj_podatke_korisnik()
+    for korisnik in svi_korisnici:
+        if (korisnik._username == user):
+            if (korisnik._password == lozinka):
+                redirect('crud-primjer')
+            else:
+                redirect('prijava')
+    redirect('info')
+
+@app.route('/prijava')
+def prijava():
+    return template('prijava', data = None, form_akcija="provjera", template_lookup=[template_path])
+
 
 @app.route('/')
 def index():
