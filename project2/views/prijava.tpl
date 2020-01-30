@@ -54,7 +54,7 @@
 	 <label for="login_password"><b>Zaporka</b></label>
 	 <input type="password" placeholder="Zaporka" name="login_pasword" required>
          <br>
-	<button type="submit">Prijava</button>
+	<button type="submit" class="btn btn-dark">Prijava</button>
       </form>
     </div>
   </body>
