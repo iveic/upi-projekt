@@ -8,7 +8,7 @@ from baza import *
 login = False
 
 #poziv funkcije koja napuni bazu testnim podacima
-#unesi_demo_podatke()
+unesi_demo_podatke()
 
 #citanje svih podataka iz baze
 procitaj_sve_podatke()
@@ -142,11 +142,17 @@ def provjera():
 def prijava():
     return template('prijava', data = None, form_akcija="provjera", template_lookup=[template_path])
 
+@app.route('/odjava')
+def odjava():
+    global login
+    login = False
+    redirect('info')
+
 
 @app.route('/')
 def index():
     data = {"developer_name": "PMF student",
             "developer_organization": "PMF"}
-    return template('C:\\Users\\User\\Desktop\\project2\\views\\index.tpl', data = data, template_lookup=[template_path])
+    return template('C:\\Users\\Josip\\Desktop\\project2\\views\\index.tpl', data = data, template_lookup=[template_path])
 
 run(app, host='localhost', port = 8085)
