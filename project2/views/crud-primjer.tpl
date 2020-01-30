@@ -62,6 +62,7 @@
                 <th scope="col">Ime Prezime</th>
                 <th scope="col">E-mail</th>
                 <th scope="col">Vrsta</th>
+		<th scope="col">Datum</th>
                 <th scope="col">Uredi</th>
                 <th scope="col">Izbriši</th>
                 </tr>
@@ -73,8 +74,9 @@
                     <tr>
                         <th scope="row"> {{item[1].id}} </th>
                         <td> {{item[0].ime_prezime}} </td>
-						<td> {{item[0].email}} </td>
-						<td> {{item[2].vrsta}} </td>
+			<td> {{item[0].email}} </td>
+			<td> {{item[2].vrsta}} </td>
+			<td> {{item[1].datum}} </td>
                         
                         <td> 
                             <a href='/crud-primjer-azuriraj-kartu?kartaid={{item[1].id}}'>
@@ -90,7 +92,10 @@
 
                 %end
             </tbody>
-        </table>       
+        </table>
+	<div class="col-md-2 text-center" style="padding: 0">
+		<a href='/ispis-karata' class="btn btn-dark">Ispis karata</a>
+	</div>
         </div>
   </div>
   
