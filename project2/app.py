@@ -37,6 +37,21 @@ def info():
     #vrati template info
     return template('info', data = None, template_lookup=[template_path])
 
+@app.route('/ispis-karata')
+def ispis_karata():
+    karte = procitaj_sve_podatke()
+    
+    file = open("karte_ispis.txt", "w")
+    for karta in karte:
+        file.write(str(karta[1].id) + "\t")
+        file.write(karta[0].ime_prezime + "\t")
+        file.write(karta[0].email + "\t\t")
+        file.write(karta[2].vrsta + "\t\t")
+        file.write(str(karta[1].datum) + "\n")
+
+    file.close()
+    redirect('/crud-primjer')
+
 @app.route('/crud-primjer')
 def crud_primjer():
     podaci = procitaj_sve_podatke()
