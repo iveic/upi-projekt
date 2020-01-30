@@ -66,6 +66,11 @@
                 <label for="vrsta">Vrsta karte</label>
                 <input type="text" class="form-control" id="vrsta" name='vrsta' value='{{data[2].vrsta if data != None else ""}}' aria-describedby="podrucje-help" placeholder="Unesite vrstu karte" required>
             </div>
+	    
+	    <div class="form-group">
+		<label for="datumizrade">Datum</label>
+		<input type="date" class="form-control" id="datum" name="datum" value='{{data[1].datum if data != None else ""}}' aria-describedby="datum-help" placeholder="Unesite datum" required>
+	    </div>
 			
             <button type="submit" class="btn btn-dark">Sačuvaj</button>
 
