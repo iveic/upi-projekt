@@ -213,7 +213,7 @@ def provjera():
                 redirect('crud-primjer')
             else:
                 redirect('prijava')
-    redirect('info')
+    redirect('prijava')
 
 @app.route('/prijava')
 def prijava():
