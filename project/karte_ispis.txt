@@ -1,2 +1,0 @@
-1	ime prezime 1	mail_1@gmail.com		mjesecna		2020-01-05
-2	ime prezime 2	mail_2@gmail.com		godisnja		2019-03-12
